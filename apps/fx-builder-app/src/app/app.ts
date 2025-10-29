@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcome } from './nx-welcome';
+import { Test } from '@theclovedental/fx-builder-wrapper';
 
 @Component({
-  imports: [NxWelcome, RouterModule],
+  standalone: true,
+  imports: [ Test ],
   selector: 'app-root',
   templateUrl: './app.html',
   styleUrl: './app.css',

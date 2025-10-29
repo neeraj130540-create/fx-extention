@@ -1,0 +1,37 @@
+name: Fx Package Build
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build-publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          registry-url: https://npm.pkg.github.com/
+      - run: npm install --force
+
+      # Install nx globally if not installed in the project
+      - run: npm install -g nx
+
+      # Build common library
+      - run: nx run fx:build:production
+
+      # Generate CSS
+      - run: npm run build-css
+      - run: cp -r dist/css dist/instantsys-labs/fx/
+
+      # Publish common library
+      - run: cd dist/instantsys-labs/fx && npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+ 

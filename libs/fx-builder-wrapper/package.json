@@ -1,0 +1,10 @@
+{
+  "name": "@theclovedental/fx-builder-wrapper",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^20.2.0",
+    "@angular/core": "^20.2.0",
+    "@instantsys-labs/fx": "^2.1.1"
+  },
+  "sideEffects": false
+}
